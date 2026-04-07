@@ -1,0 +1,88 @@
+.docItemCol {
+  max-width: min(100%, 860px);
+}
+
+.docItemContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.docArticle {
+  border: 1px solid var(--mint-border);
+  border-radius: 28px;
+  background: var(--mint-card-bg);
+  padding: 1.5rem 1.75rem 2.25rem;
+  box-shadow: var(--mint-card-shadow);
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sectionEyebrow {
+  margin: 0 0 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mint-accent);
+}
+
+.sectionLabel {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--mint-text-soft);
+}
+
+.copyButton {
+  border: 1px solid var(--mint-border-strong);
+  border-radius: 999px;
+  background: var(--mint-button-bg);
+  color: var(--mint-text);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.copyButton:hover {
+  transform: translateY(-1px);
+  border-color: var(--mint-button-hover-border);
+  box-shadow: var(--mint-button-hover-shadow);
+}
+
+.tocColumn {
+  display: block;
+}
+
+@media (max-width: 996px) {
+  .docItemCol {
+    max-width: 100%;
+  }
+
+  .docArticle {
+    border-radius: 22px;
+    padding: 1.25rem 1rem 1.75rem;
+  }
+
+  .pageHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .copyButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

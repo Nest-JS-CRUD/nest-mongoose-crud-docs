@@ -1,0 +1,98 @@
+.section {
+  padding: 1rem 1rem 0;
+}
+
+.wrapper {
+  max-width: 1320px;
+  margin: 0 auto;
+  border: 1px solid var(--mint-border);
+  border-radius: 30px;
+  background: var(--mint-card-bg);
+  box-shadow: var(--mint-card-shadow);
+  overflow: hidden;
+}
+
+.intro {
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid var(--mint-border);
+}
+
+.eyebrow {
+  margin: 0 0 0.7rem;
+  color: var(--mint-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+}
+
+.description {
+  max-width: 44rem;
+  margin: 0.85rem 0 0;
+  color: var(--mint-text-soft);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card {
+  min-height: 220px;
+  border: 1px solid var(--mint-border);
+  border-radius: 24px;
+  background: var(--mint-surface);
+  padding: 1.4rem;
+}
+
+.cardIndex {
+  margin: 0 0 0.8rem;
+  color: var(--mint-text-soft);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.cardBody {
+  margin: 0.8rem 0 0;
+  color: var(--ifm-font-color-base);
+}
+
+[data-theme='dark'] .card {
+  background:
+    linear-gradient(180deg, rgba(18, 18, 18, 0.98) 0%, rgba(12, 12, 12, 0.96) 100%);
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper,
+  .card {
+    border-radius: 24px;
+  }
+
+  .intro {
+    padding: 1.5rem 1.25rem 1rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
