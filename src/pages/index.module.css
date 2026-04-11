@@ -113,6 +113,27 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(16px);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.installCard:hover {
+  transform: translateY(-1px);
+  border-color: rgba(19, 170, 82, 0.28);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+.installCard:focus-visible {
+  outline: 2px solid rgba(19, 170, 82, 0.35);
+  outline-offset: 3px;
 }
 
 .installLabel {
@@ -124,11 +145,21 @@
 }
 
 .installCode {
+  display: inline-block;
   border: none;
   background: transparent;
   color: var(--mint-text);
   padding: 0;
   font-size: 0.94rem;
+}
+
+.installAction {
+  min-width: 3.6rem;
+  color: var(--mint-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .heroVisual {

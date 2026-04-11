@@ -60,6 +60,7 @@ const workflow = [
 ];
 
 const heroTitle = 'Build Production-Ready CRUD APIs Faster.';
+const installCommand = 'npm install nest-mongoose-crud';
 
 function AnimatedMetric({
   target,
@@ -110,6 +111,7 @@ function AnimatedMetric({
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   const [typedTitle, setTypedTitle] = useState('');
+  const [installCopied, setInstallCopied] = useState(false);
 
   useEffect(() => {
     if (
@@ -173,6 +175,25 @@ export default function Home(): ReactNode {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!installCopied) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => setInstallCopied(false), 1800);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [installCopied]);
+
+  const handleInstallCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(installCommand);
+      setInstallCopied(true);
+    } catch {
+      setInstallCopied(false);
+    }
+  };
+
   return (
     <Layout
       title={`${siteConfig.title} documentation`}
@@ -211,12 +232,18 @@ export default function Home(): ReactNode {
                   Explore querying
                 </Link>
               </div>
-              <div className={styles.installCard}>
+              <button
+                type="button"
+                className={styles.installCard}
+                onClick={handleInstallCopy}
+                aria-label={`Copy command: ${installCommand}`}
+              >
                 <span className={styles.installLabel}>Install</span>
-                <code className={styles.installCode}>
-                  npm install nest-mongoose-crud
-                </code>
-              </div>
+                <code className={styles.installCode}>{installCommand}</code>
+                <span className={styles.installAction} aria-live="polite">
+                  {installCopied ? 'Copied' : 'Copy'}
+                </span>
+              </button>
             </div>
 
             <div

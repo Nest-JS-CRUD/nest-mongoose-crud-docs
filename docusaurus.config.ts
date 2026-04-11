@@ -23,7 +23,10 @@ if (fs.existsSync(localEnvPath)) {
     }
 
     const key = entry.slice(0, separatorIndex).trim();
-    const value = entry.slice(separatorIndex + 1).trim().replace(/^['"]|['"]$/g, '');
+    const value = entry
+      .slice(separatorIndex + 1)
+      .trim()
+      .replace(/^['"]|['"]$/g, '');
 
     if (!process.env[key]) {
       process.env[key] = value;
@@ -34,7 +37,7 @@ if (fs.existsSync(localEnvPath)) {
 const config: Config = {
   title: 'nest-mongoose-crud',
   tagline: 'Fast, extensible CRUD helpers for NestJS + Mongoose',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo-favicon.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -83,17 +86,16 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/logo.PNG',
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'nest-mongoose-crud',
       logo: {
         alt: 'nest-mongoose-crud Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.PNG',
       },
       items: [
         {
