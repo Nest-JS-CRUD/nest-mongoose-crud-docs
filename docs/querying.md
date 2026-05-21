@@ -49,8 +49,9 @@ For range queries and comparisons, use bracket notation with MongoDB comparison 
 - `[gt]` - greater than (`$gt`)
 - `[lte]` - less than or equal (`$lte`)
 - `[lt]` - less than (`$lt`)
+- `[ne]` - not equal to one or more values (`$nin`)
 
-**Explanation:** These operators allow precise range filtering on numeric or date fields. The bracket notation `[operator]` is parsed to extract the field name and apply the corresponding MongoDB operator.
+**Explanation:** These operators allow precise range filtering on numeric or date fields, along with exclusion filtering for values you want to leave out of the result set. The bracket notation `[operator]` is parsed to extract the field name and apply the corresponding MongoDB operator.
 
 **Example:** Get products with price between $100 and $500.
 
@@ -70,12 +71,32 @@ GET /products?rating[gte]=4.0&stock[gt]=10
 GET /products?createdAt[gte]=2024-01-01
 ```
 
+**Example:** Exclude products with draft or archived status.
+
+```http
+GET /products?status[ne]=draft,archived
+```
+
+This becomes the MongoDB filter:
+
+```ts
+{ status: { $nin: ['draft', 'archived'] } }
+```
+
+`[ne]` is useful when you want to exclude one or more values directly from the request query without writing custom filter logic in each service. The parser detects the `field[ne]` pattern, extracts the field name, splits the comma-separated value list, and converts it into a MongoDB `$nin` filter before the Mongoose query runs.
+
 Note: Date fields should be in ISO format (YYYY-MM-DDTHH:mm:ss.sssZ). Our Product model has automatic `createdAt`/`updatedAt` timestamps.
 
 You can combine multiple operators on the same field or different fields:
 
 ```http
 GET /products?price[gte]=50&price[lte]=200&rating[gte]=3.5&stock[gte]=5
+```
+
+You can also combine exclusion filters with other query operators:
+
+```http
+GET /products?status[ne]=draft,archived&price[gte]=50&stock[gt]=0
 ```
 
 ## Sorting
