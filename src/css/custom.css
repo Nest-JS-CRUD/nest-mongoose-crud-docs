@@ -194,8 +194,17 @@ a {
 .navbar {
   border-bottom: 1px solid rgba(148, 163, 184, 0.18);
   background: var(--ifm-navbar-background-color);
-  backdrop-filter: blur(18px);
   box-shadow: none;
+  position: relative;
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(18px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .navbar__inner {
@@ -591,6 +600,14 @@ pre code,
 
   .pagination-nav {
     gap: 0.75rem;
+  }
+
+  .navbar-sidebar {
+    z-index: 300;
+  }
+
+  .navbar-sidebar__backdrop {
+    z-index: 299;
   }
 }
 
